@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Page</title>
+</head>
+<body>
+    <form action="/form/redir" method="post">
+        <fieldset>
+            <legend>Enter movie info</legend>
+            <label for="movie">Movie name:</label><br>
+            <input type="text" id="movie" name="movie"><br><br>
+            <label for="yearCreated">Year made:</label><br>
+            <input type="text" id="yearCreated" name="yearCreated" placeholder="mm/dd/yyyy">
+        </fieldset>
+        <fieldset>
+            <legend>Enter actor info</legend>
+            <label for="actor">Enter actor name:</label><br>
+            <input type="text" id="actor" name="actor"><br><br>
+            <label for="birthDate">Enter actor date of birth:</label><br>
+            <input type="text" id="birthDate" name="birthDate" placeholder="mm/dd/yyyy"><br><br>
+        </fieldset>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
