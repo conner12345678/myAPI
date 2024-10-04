@@ -45,11 +45,16 @@ app.get('/api/:id/movie', (req,res) => {
     return res.json(theMovie)
 })
 
-app.get('/form', (req,res) => {
-    res.sendFile(path.join(__dirname, './public/form.html'))
+app.get('/form/:password', (req,res) => {
+    const {password} = req.params
+    if(password === 'word'){
+        res.sendFile(path.join(__dirname, './public/form.html'))
+    }else{
+        res.status(404).send('YOU DONT BELONG HERE!! LEAVE OR BE DICINTEGRATED')
+    }
 })
 
-app.post('/form/redir', (req,res) => {
+app.post('/form', (req,res) => {
     const movies = getMovies()
     const actors = getActors()
     const {movie, yearCreated, actor, birthDate} = req.body
@@ -71,20 +76,34 @@ app.post('/form/redir', (req,res) => {
     res.redirect('/')
 })
 
-app.get('/delete', (req,res) => {
-    res.sendFile(path.join(__dirname, './public/delete.html'))
-})
-
-// app.delete('/delete/redir', (req,res) => {
-//     const id = req.params
-//     console.log(id)
-//     const index = movies.findIndex(movie => movie.id === id)
-//     if(!id){
-//         res.status(404).send('The Id was not found')
+// app.get('/delete/:password', (req,res) => {
+//     const {password} = req.params
+//     if(password === 'AhPerryThePlatipusHowVeryUnexpectedOfYouAndByUnexpectedIMeanCompleatlyExpected'){
+//         res.sendFile(path.join(__dirname, './public/delete.html'))
+//     }else{
+//         res.status(404).send('Introducing the deny you accessinator!')
 //     }
-//     movies.splice(index, 1)
-//     res.redirect('/')
 // })
+
+app.delete('/delete/redir/:password/:id', (req,res) => {
+    const {password, id} = req.params
+    if(password === 'AhPerryThePlatipusHowVeryUnexpectedOfYouAndByUnexpectedIMeanCompleatlyExpected'){
+        const movies = getMovies()
+        const actors = getActors()
+        const index = movies.findIndex(movie => movie.id === id)
+        if(index == -1){
+            res.status(404).send('The Id was not found')
+        }else{
+            movies.splice(index, 1)
+            actors.splice(index, 1)
+            saveMovies(movies)
+            saveActors(actors)
+            res.redirect('/')
+        }
+    }else{
+        res.status(404).send('Introducing the deny you accessinator!')
+    }
+})
 
 app.listen(5000, () => {
     console.log('Server running on port 5000')
