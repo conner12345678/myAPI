@@ -4,11 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <h1>Movie list api</h1>
     <div class="content">
-        <h3></h3>
+        <h3>Get movie Information</h3><br>
+        <p>To get the info from every movie on the list you would use this url</p><br>
+        <div class="code">
+            <p>/api/movies</p>
+        </div><br>
+        <p>To get the information from one movie use this url:</p>  
+        <div class="code">
+            <p>/api/:id/movie</p>
+        </div>  
+        <p>Use an actual id number instead of :id</p><br><br>
+        <h3>Get actor information</h3><br>
+        <p>To get information on the entire list of actors You use this url</p><br>
+        <div class="code">
+            <p>/api/actors</p>
+        </div><br>
+        <p>To get the information for one of the actors you would use this</p><br>
+        <div class="code">
+            <p>/api/:actor_id/actor</p>
+        </div>
+        <p>Use an actual id number instead of :actor_id</p>
     </div>
 </body>
 </html>

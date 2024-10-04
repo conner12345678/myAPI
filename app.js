@@ -37,12 +37,23 @@ app.get('/api/movies', (req,res) => {
     res.json(theMovies)
 })
 
+app.get('/api/actors', (req,res)=>{
+    const theActors = getActors()
+    res.json(theActors)
+})
+
 app.get('/api/:id/movie', (req,res) => {
     const movies = getMovies()
     const singleMovie = movies.findIndex(movie => movie.id == req.params.id)
     const theMovie = movies.find((movie) => movie.id == Number(singleMovie+1))
-    console.log(theMovie)
     return res.json(theMovie)
+})
+
+app.get('/api/:actor_id/actor', (req,res)=>{
+    const actors = getActors()
+    const singleActor = actors.findIndex(actor => actor.actor_id == req.params.actor_id)
+    const theActor = actors.find((actor) => actor.actor_id == Number(singleActor+1))
+    return res.json(theActor)
 })
 
 app.get('/form/:password', (req,res) => {
@@ -75,15 +86,6 @@ app.post('/form', (req,res) => {
     saveActors(actors)
     res.redirect('/')
 })
-
-// app.get('/delete/:password', (req,res) => {
-//     const {password} = req.params
-//     if(password === 'AhPerryThePlatipusHowVeryUnexpectedOfYouAndByUnexpectedIMeanCompleatlyExpected'){
-//         res.sendFile(path.join(__dirname, './public/delete.html'))
-//     }else{
-//         res.status(404).send('Introducing the deny you accessinator!')
-//     }
-// })
 
 app.delete('/delete/redir/:password/:id', (req,res) => {
     const {password, id} = req.params
